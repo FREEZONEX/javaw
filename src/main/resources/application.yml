@@ -9,6 +9,8 @@ supos:
   supos-address: http://47.236.10.165:8080
   app-id: 415ed3fc72b533713244dcd553159642
   app-secret: 10999785ab1c5f475c6d9c8b728e28a3
+  ak:
+  sk:
 
 spring:
   devtools:

@@ -10,8 +10,10 @@ import com.google.zxing.client.j2se.MatrixToImageConfig;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.supos.app.aksk.SignUtils;
+import com.supos.app.request.SuposRequestManager;
 import org.apache.commons.codec.binary.Base64;
 
+import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
@@ -24,6 +26,23 @@ import java.util.Map;
 
 //下面这部分是组织/人员管理接口调用用例
 public class org {
+
+    @Resource
+    SuposRequestManager suposRequestManager;
+
+    /**
+     * request manager 使用示例
+     * 配置好ak sk baseUrl 后只需要 传入 uri 和 header query参数 即可 其余全部已经封装完成
+     */
+    public void users() {
+        Map<String, String> headerMap = new HashMap<>(16);
+        Map<String, String> queryMap = new HashMap<>(16);
+        queryMap.put("companyCode","default_org_company");
+        HttpResponse response = suposRequestManager.suposApiGet("/open-api/auth/v2/users", headerMap, queryMap);
+        System.out.println(response.body());
+    }
+
+
 //    public static void main(String[] args) {
 //        persons();
 //        System.out.println("前面是您自己的程序，想做啥就做啥。后面加上Supos的接口就可以同步了，veryEZ");
